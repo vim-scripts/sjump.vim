@@ -1,0 +1,14 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=3297
+
+When executed the plugin will display labels in the sign area and wait
+for the user to enter a label. Then it will jump to the line with the
+entered label and hide the labels (by removing the signs).
+
+The plugin is mapped to the sequence gl. The mapping can be disabled with:
+   let g:sjump_enable_keymap = 0
+
+To put the mapping on another key:
+   nmap <F9> :call sjump#JumpToLabel()<cr>
+
+Requires: +signs
+Use :version to see if +signs is enabled.

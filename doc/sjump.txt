@@ -1,0 +1,46 @@
+*sjump.txt*        Jump to line on screen      Last Change: October 2010
+
+*sjump*
+
+When executed the plugin will display labels in the sign area and wait
+for the user to enter a label. Then it will jump to the line with the
+entered label and hide the labels (by removing the signs).
+
+The plugin is mapped to the sequence gl. The mapping can be disabled
+with >
+   let g:sjump_enable_keymap = 1
+<
+To put the mapping on another key: >
+   nmap <F9> :call sjump#JumpToLabel()<cr>
+<
+
+The set of characters to be used in labels can be set with: >
+   let g:sjump_label_chars = "abcdefghijklmnopqrstuvwxyz"
+<
+The set must contain at least 5 characters, otherwise it will be set
+to the above default value.
+
+The display algorithm will change the size of the label and the
+step between subsequent lines if there are not enough characters
+in the sjump_label_chars string. By default it will first try to
+change the step to every second line, then to every third line. It
+the number of lines in the window is still too big, it will then
+change the size of the label to 2 characters and retry with steps
+1, 2 and 3. If there are still too many lines, it will find a 
+combination of step and size that fits.
+
+The step and size pairs can be changed. The default behaviour
+as described above is defined with the following assignment: >
+   let g:sjump_step_size_pairs = 
+      \ [ [1, 1], [2, 1], [3, 1], [1, 2], [2, 2], [3, 2] ]
+<
+To try to change the size first and then the step, one can set: >
+   let g:sjump_step_size_pairs =
+      \ [ [1, 1], [1, 2], [2, 1], [2, 2], [3, 1], [3, 2] ]
+<
+To always use labels with 2 characters, do something like: >
+   let g:sjump_step_size_pairs =
+      \ [ [1, 2], [2, 2], [3, 2], [4, 2], [5, 2], [6, 2] ]
+<
+
+## vim:tw=78:noet:wrap:ts=8:ft=help:norl:
