@@ -75,6 +75,7 @@ function! s:LabelToIndex(label, jumpinfo)
    if a:jumpinfo['size'] == 1
       return stridx(g:sjump_label_chars, a:label[0])
    else
+      let nd = len(g:sjump_label_chars)
       let c1 = stridx(g:sjump_label_chars, a:label[0])
       let c2 = stridx(g:sjump_label_chars, a:label[1])
       if c1 < 0 || c2 < 0 
@@ -141,7 +142,7 @@ endfunc
 
 function! s:GetLabel(jumpinfo)
    let msg = "Type the label >>>"
-   echo msg . a:jumpinfo['size']
+   echo msg
    let label = ""
    let i = 0
    while i < a:jumpinfo['size']
@@ -170,7 +171,9 @@ function! sjump#JumpToLabel()
       let jumpinfo = s:ShowSigns()
       let bnr = jumpinfo['bufnr']
       let label = s:GetLabel(jumpinfo)
-      call s:JumpToLabel(label, jumpinfo)
+      if label != ""
+         call s:JumpToLabel(label, jumpinfo)
+      endif
    finally
       call s:HideSigns(bnr)
    endtry

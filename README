@@ -10,5 +10,7 @@ The plugin is mapped to the sequence gl. The mapping can be disabled with:
 To put the mapping on another key:
    nmap <F9> :call sjump#JumpToLabel()<cr>
 
+More configuration options are in help (:help sjump).
+
 Requires: +signs
 Use :version to see if +signs is enabled.
